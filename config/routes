@@ -13,6 +13,3 @@
 
 /profile ProfileR GET
 
-
-
-/company      companyR    GET POST PUT DELETE
