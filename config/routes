@@ -13,3 +13,6 @@
 
 /profile ProfileR GET
 
+/posts               PostR           POST GET 
+/posts/#PostId       PostSpecificR   PUT DELETE
+/posts/#PostId/#Int  PostLike        PATCH
