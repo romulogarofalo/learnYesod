@@ -27,10 +27,10 @@ putPostSpecificR  idPost = do
     sendStatusJSON noContent204 (object [])
 
 patchPostLike :: PostId -> Int -> Handler Value
-patchPostSpecificR idPost likes = do
+patchPostLike idPost likes = do
     _ <- runDB $ get404 idPost
-    runDB $ update idPost [PostLikes ==. likes]
-
+    runDB $ update idPost [PostLikes =. likes]
+    sendStatusJSON noContent204 (object [])
 
 deletePostSpecificR :: PostId -> Handler Value
 deletePostSpecificR idPost = do
