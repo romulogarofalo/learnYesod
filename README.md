@@ -37,6 +37,8 @@ and we need to declare that we have a new file in handler, to do that add this l
 
 	import Handler.Post
 
+put this under the other files on line 47
+
 now we will create a file "Post.hs" in the Handlers folder (path: "src/Handler/Post.hs") 
 
 and paste this code
@@ -47,11 +49,10 @@ and paste this code
 	import Import
 	import Database.Persist.Postgresql
 
-put this under the other files on line 47
 
 now we finnaly can start our Crud (づ￣ ³￣)づ
 
-lets first make a register with the POST method, to do that is very easy but we need to understend how the route work (what I tried to explain some lines ago), just paste the code and that it 
+lets first make a register with the POST method, to do that is very easy but we need to understend how the route work (what I tried to explain some lines ago), just paste the code in Posts.hs and that it 
 
 	postPostR :: Handler Value
 	postPostR = do
