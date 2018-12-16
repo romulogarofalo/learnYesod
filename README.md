@@ -9,9 +9,11 @@ in our routes file (path: "/config/routes") we have some routes there but lets u
 		/posts               PostR           POST GET 
 	
 
-ok now we have our routes lets undertend how then work, in the image bellow its easy to understend
+ok now we have our routes lets undertend how then work:
 
-	imagem
+	"/posts" this is the URL of the route, if you want to access "localhost:3000/posts"
+	"PostR" is the function that we gonna use 
+	"POST GET" this is the HTTP methods that the route gonna suport
 
 lets add the table in the migrations
 
@@ -60,11 +62,16 @@ lets first make a register with the POST method, to do that is very easy but we 
 		pid <- runDB $ insert post
 		sendStatusJSON created201 (object ["id" .= fromSqlKey pid])
 
-ok, i'm kirring lets explay what is happing here
+ok, i'm kirring lets explay what is happing here line by line
 
-	imagem
+	"postPostR :: Handler Value" ok, remember that in the router file we had the function "PostR", to link the function with the method of the route we just need to concat the method in lower case with the function name like that "postPostR" and the "Handler Value" is just what the function return
 
-// talvez mais coisas explicando sobre as funcoes
+	"postPostR = do" lets use the monnad "Do" (anyone uses bind's come on)
+
+	"post <- requireJsonBody :: Handler Post" whats happen here, we are getting the content of the body request, and turn in into a Haskell type
+	"requireJsonBody :: Handler Post" the Haskell type will have the same fields of the table because we are typing the input with ":: Handler Post" and the function requireJsonBody make the magic for us, getting the json and returning the haskell type and we put it into a """"varible""""
+
+	"pid <- runDB $ insert post"
 
 now the GET method 
 
@@ -74,14 +81,6 @@ now the GET method
     	sendStatusJSON ok200 (object ["content" .= dt])
 
 	imagem explicando o metodo get e blablabla
-
-and POST
-
-	postPostR :: Handler Value
-	postPostR = do
-		post <- requireJsonBody :: Handler Post
-		pid <- runDB $ insert post
-		sendStatusJSON created201 (object ["id" .= fromSqlKey pid])
 
 lets build the project with the command 
 
